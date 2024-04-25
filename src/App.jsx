@@ -1,35 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from "react";
+import "./App.css";
+import cookieButton from "./components/cookie.png";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [cookieCount, setCookies] = useState(0);
+  // const [cps, setCps] = useState(1);
+
+  // useEffect(() => {
+  //   const myInterval = setInterval(() => {
+  //     addCookie();
+  //   }, 1000 / cps);
+
+  //   return () => {
+  //     clearInterval(myInterval);
+  //   };
+  // }, [cps]);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <h1>Click the cookie!</h1>
+      <div className="cookieStats">
+        <img
+          src={cookieButton}
+          alt={"A delicious looking chocolate chip cookie"}
+          onClick={() => setCookies((cookieCount) => cookieCount + 1)}
+        ></img>
+        {cookieCount} cookies
+        <p>How about an upgrade?</p>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
-
-export default App
