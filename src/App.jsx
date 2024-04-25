@@ -4,17 +4,32 @@ import cookieButton from "./components/cookie.png";
 
 export default function App() {
   const [cookieCount, setCookies] = useState(0);
-  // const [cps, setCps] = useState(1);
+  const [cps, setCps] = useState(0);
 
-  // useEffect(() => {
-  //   const myInterval = setInterval(() => {
-  //     addCookie();
-  //   }, 1000 / cps);
+  useEffect(() => {
+    {
+      if (cps > 0) {
+        console.log(cps);
+        const myInterval = setInterval(() => {
+          addCookie();
+        }, 1000 / cps);
 
-  //   return () => {
-  //     clearInterval(myInterval);
-  //   };
-  // }, [cps]);
+        return () => {
+          clearInterval(myInterval);
+        };
+      }
+    }
+  }, [cps]);
+
+  function addCookie() {
+    setCookies((currentCookies) => {
+      return currentCookies + 1;
+    });
+  }
+
+  function buyUpgrade() {
+    setCps(cps + 1);
+  }
 
   return (
     <>
@@ -25,6 +40,7 @@ export default function App() {
           alt={"A delicious looking chocolate chip cookie"}
           onClick={() => setCookies((cookieCount) => cookieCount + 1)}
         ></img>
+        <button onClick={buyUpgrade}>Buy upgrade</button>
         {cookieCount} cookies
         <p>How about an upgrade?</p>
       </div>
