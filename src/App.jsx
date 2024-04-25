@@ -30,7 +30,10 @@ export default function App() {
 
   //buy an upgrade
   function buyUpgrade() {
-    setCps(cps + 1);
+    if (cookieCount > 9) {
+      setCps(cps + 1);
+      setCookies(cookieCount - 10);
+    }
   }
 
   //Buttons/html structure

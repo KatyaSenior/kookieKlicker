@@ -1,17 +1,17 @@
 User Stories:
 🐿️ As a user, I want to be able to click the cookie and increment the counter. ACHIEVED.
-🐿️ As a user, I want to see the counter automatically increment using an interval timer
-🐿️ As a user, I want to purchase items i can afford in the shop and increase the number of cookies every time the interval passes
+🐿️ As a user, I want to see the counter automatically increment using an interval timer. ACHIEVED.
+🐿️ As a user, I want to purchase items I can afford in the shop and increase the number of cookies every time the interval passes. ACHEIVED singular item. Make a second!
 
 Requirements:
 
-🎯 Create state variables to store the current number of cookies and the cookies PerSecond value (useState)
+🎯 Create state variables to store the current number of cookies and the cookies PerSecond value (useState). ACHEIVED.
 
-🎯 Set up a timer to increment the number of cookies by the cookiesPerSecond value (useEffect). Be sure to handle clearing the timer using the useEffect return value.
+🎯 Set up a timer to increment the number of cookies by the cookiesPerSecond value (useEffect). Be sure to handle clearing the timer using the useEffect return value. ACHEIVED.
 
 🎯 Set up an array of objects containing the items available for purchase in the store, their cost and their increment increase value. Map through these and create buttons for each.
 
-🎯 Create a function to handle the purchase of an item. This should check if the user has enough cookies to purchase the item, and if so, subtract the cost of the item from the number of cookies and add the increment value to the cookiesPerSecond value.
+🎯 Create a function to handle the purchase of an item. This should check if the user has enough cookies to purchase the item, and if so, subtract the cost of the item from the number of cookies and add the increment value to the cookiesPerSecond value. ACHEIVED.
 
 Stretch Goals:
 
@@ -22,6 +22,11 @@ Bugs:
 1. Problem: Site fails to render, errors relating to an image tag in App.jsx
    Cause: Img tag cannot have children
    Status: Resolved. Current cookie count moved to outside image tag
+
+General project successes and struggle:
+
+Success: Clicking how simple updating the front end can be using react.
+Struggle: Overcomplicating the code. For example, not trusting that a condition could be written as simply as if (variable > 0) and thus wasting time. Project started going much smoother once the above success was acheived.
 
 # React + Vite
 
