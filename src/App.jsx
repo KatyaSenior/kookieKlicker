@@ -6,6 +6,7 @@ export default function App() {
   const [cookieCount, setCookies] = useState(0);
   const [cps, setCps] = useState(0);
 
+  //set cps
   useEffect(() => {
     {
       if (cps > 0) {
@@ -27,10 +28,12 @@ export default function App() {
     });
   }
 
+  //buy an upgrade
   function buyUpgrade() {
     setCps(cps + 1);
   }
 
+  //Buttons/html structure
   return (
     <>
       <h1>Click the cookie!</h1>
@@ -41,7 +44,8 @@ export default function App() {
           onClick={() => setCookies((cookieCount) => cookieCount + 1)}
         ></img>
         <button onClick={buyUpgrade}>Buy upgrade</button>
-        {cookieCount} cookies
+        <p>{cookieCount} cookies</p>
+        {cps} cookies per second
         <p>How about an upgrade?</p>
       </div>
     </>
