@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import cookieButton from "./components/cookie.png";
+import ErrorMessage from "./components/ErrorMessage";
 
 export default function App() {
   const [cookieCount, setCookies] = useState(0);
   const [cps, setCps] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
 
   //set cps
   useEffect(() => {
@@ -34,6 +36,10 @@ export default function App() {
       setCps(cps + 1);
       setCookies(cookieCount - 10);
     }
+    setIsVisible(true);
+    setTimeout(() => {
+      setIsVisible(false);
+    }, 5000);
   }
 
   //Buttons/html structure
@@ -50,6 +56,7 @@ export default function App() {
         <p>{cookieCount} cookies</p>
         {cps} cookies per second
         <p>How about an upgrade?</p>
+        {isVisible && <ErrorMessage />}
       </div>
     </>
   );
