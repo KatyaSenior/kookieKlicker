@@ -22,6 +22,9 @@ Bugs:
 1. Problem: Site fails to render, errors relating to an image tag in App.jsx
    Cause: Img tag cannot have children
    Status: Resolved. Current cookie count moved to outside image tag
+2. Problem: When buyUpgrade is converted into a component, it is no longer possible to purchase an upgrade despite the click being recognised.
+   Cause: buyUpgrade functionality not required to be in a component. Overcomplicates code.
+   Status: Resolved.
 
 General project successes and struggle:
 
