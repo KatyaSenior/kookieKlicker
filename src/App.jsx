@@ -8,7 +8,11 @@ export default function App() {
   const [cps, setCps] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const [upgradeCount, setUpgradeCount] = useState(0);
-  const [upgradeCost, setUpgradeCost] = useState(10);
+  // const [upgradeCost, setUpgradeCost] = useState(10);
+  const upgrades = [
+    { id: 1, upgradeName: "Upgrade 1", upgradeCost: 10 },
+    { id: 2, upgradeName: "Upgrade 2", upgradeCost: 100 },
+  ];
 
   //set cps
   useEffect(() => {
@@ -47,6 +51,11 @@ export default function App() {
     }
   }
 
+  //set up button array
+  // const upgradeButtons = upgrades.map((upgrade) => (
+  //   <button key={upgrade}>{upgrade}</button>
+  // ));
+
   //Buttons/html structure
   return (
     <>
@@ -57,7 +66,15 @@ export default function App() {
           alt={"A delicious looking chocolate chip cookie"}
           onClick={() => setCookies((cookieCount) => cookieCount + 1)}
         ></img>
-        <button onClick={buyUpgrade}>Buy upgrade</button>
+        {upgrades.map((upgrade) => {
+          return (
+            <div key={upgrade.upgradeName + upgrade.id}>
+              <button>{upgrade.upgradeName}</button>
+              <p>{upgrade.upgradeCost}</p>
+            </div>
+          );
+        })}
+        <p onClick={buyUpgrade}>{upgrades}</p>
         <p>{cookieCount} cookies</p>
         {cps} cookies per second
         <p>How about an upgrade?</p>
