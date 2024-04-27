@@ -25,6 +25,9 @@ Bugs:
 2. Problem: When buyUpgrade is converted into a component, it is no longer possible to purchase an upgrade despite the click being recognised.
    Cause: buyUpgrade functionality not required to be in a component. Overcomplicates code.
    Status: Resolved.
+3. Problem: Error message appears despite successful upgrade.
+   Cause: No "else" in relevant line of code, so always triggering when the upgrade button is pressed.
+   Status: Resolved.
 
 General project successes and struggle:
 
