@@ -7,18 +7,27 @@ export default function App() {
   const [cookieCount, setCookies] = useState(0);
   const [cps, setCps] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
-  const [upgradeCount, setUpgradeCount] = useState(0);
-  // const [upgradeCost, setUpgradeCost] = useState(10);
   const upgrades = [
-    { id: 1, upgradeName: "Upgrade 1", upgradeCost: 10 },
-    { id: 2, upgradeName: "Upgrade 2", upgradeCost: 100 },
+    {
+      id: 0,
+      upgradeName: "Upgrade 1",
+      upgradeCost: 10,
+      increaseCost: 1,
+      upgradeNumber: 0,
+    },
+    {
+      id: 1,
+      upgradeName: "Upgrade 2",
+      upgradeCost: 100,
+      increaseCost: 10,
+      upgradeNumber: 0,
+    },
   ];
-
+  const [userUpgrades, setUserUpgrades] = useState(upgrades);
   //set cps
   useEffect(() => {
     {
       if (cps > 0) {
-        console.log(cps);
         const myInterval = setInterval(() => {
           addCookie();
         }, 1000 / cps);
@@ -37,13 +46,34 @@ export default function App() {
   }
 
   //buy an upgrade
-  function buyUpgrade() {
+  function buyUpgrade(
+    id,
+    upgradeCost,
+    upgradeName,
+    increaseCost,
+    upgradeNumber
+  ) {
+    // Check if the player has enough cookies to purchase the upgrade
     if (cookieCount >= upgradeCost) {
-      setCps(cps + 1);
+      // Update cps and cookieCount
+      setCps(cps + increaseCost);
       setCookies(cookieCount - upgradeCost);
-      setUpgradeCost(upgradeCost + 1);
-      setUpgradeCount(upgradeCount + 1);
+
+      //Handles cost and upgrade counter
+      setUserUpgrades((prevUserUpgrades) => {
+        return prevUserUpgrades.map((upgrade) => {
+          if (upgrade.id === id) {
+            return {
+              ...upgrade,
+              upgradeCost: upgrade.upgradeCost + increaseCost,
+              upgradeNumber: upgrade.upgradeNumber + 1,
+            };
+          }
+          return upgrade;
+        });
+      });
     } else {
+      // Display error message
       setIsVisible(true);
       setTimeout(() => {
         setIsVisible(false);
@@ -66,19 +96,29 @@ export default function App() {
           alt={"A delicious looking chocolate chip cookie"}
           onClick={() => setCookies((cookieCount) => cookieCount + 1)}
         ></img>
-        {upgrades.map((upgrade) => {
+        {userUpgrades.map((upgrade) => {
           return (
             <div key={upgrade.upgradeName + upgrade.id}>
-              <button>{upgrade.upgradeName}</button>
+              <button
+                onClick={() =>
+                  buyUpgrade(
+                    upgrade.id,
+                    upgrade.upgradeCost,
+                    upgrade.upgradeName,
+                    upgrade.increaseCost,
+                    upgrade.upgradeNumber
+                  )
+                }
+              >
+                {upgrade.upgradeName}
+              </button>
               <p>{upgrade.upgradeCost}</p>
+              <p>{upgrade.upgradeNumber} purchased</p>
             </div>
           );
         })}
-        <p onClick={buyUpgrade}>{upgrades}</p>
         <p>{cookieCount} cookies</p>
         {cps} cookies per second
-        <p>How about an upgrade?</p>
-        <p>{upgradeCount} upgrades purchased so far</p>
         {isVisible && <ErrorMessage />}
       </div>
     </>
