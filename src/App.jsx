@@ -46,13 +46,7 @@ export default function App() {
   }
 
   //buy an upgrade
-  function buyUpgrade(
-    id,
-    upgradeCost,
-    upgradeName,
-    increaseCost,
-    upgradeNumber
-  ) {
+  function buyUpgrade(id, upgradeCost, upgradeName, increaseCost) {
     // Check if the player has enough cookies to purchase the upgrade
     if (cookieCount >= upgradeCost) {
       // Update cps and cookieCount
@@ -81,11 +75,6 @@ export default function App() {
     }
   }
 
-  //set up button array
-  // const upgradeButtons = upgrades.map((upgrade) => (
-  //   <button key={upgrade}>{upgrade}</button>
-  // ));
-
   //Buttons/html structure
   return (
     <>
@@ -96,31 +85,31 @@ export default function App() {
           alt={"A delicious looking chocolate chip cookie"}
           onClick={() => setCookies((cookieCount) => cookieCount + 1)}
         ></img>
-        {userUpgrades.map((upgrade) => {
-          return (
-            <div key={upgrade.upgradeName + upgrade.id}>
-              <button
-                onClick={() =>
-                  buyUpgrade(
-                    upgrade.id,
-                    upgrade.upgradeCost,
-                    upgrade.upgradeName,
-                    upgrade.increaseCost,
-                    upgrade.upgradeNumber
-                  )
-                }
-              >
-                {upgrade.upgradeName}
-              </button>
-              <p>{upgrade.upgradeCost}</p>
-              <p>{upgrade.upgradeNumber} purchased</p>
-            </div>
-          );
-        })}
         <p>{cookieCount} cookies</p>
         {cps} cookies per second
         {isVisible && <ErrorMessage />}
       </div>
+      {userUpgrades.map((upgrade) => {
+        return (
+          <div className="upgrades" key={upgrade.upgradeName + upgrade.id}>
+            <button
+              onClick={() =>
+                buyUpgrade(
+                  upgrade.id,
+                  upgrade.upgradeCost,
+                  upgrade.upgradeName,
+                  upgrade.increaseCost,
+                  upgrade.upgradeNumber
+                )
+              }
+            >
+              {upgrade.upgradeName}
+            </button>
+            <p>{upgrade.upgradeCost}</p>
+            <p>{upgrade.upgradeNumber} purchased</p>
+          </div>
+        );
+      })}
     </>
   );
 }
