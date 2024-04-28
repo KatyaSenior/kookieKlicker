@@ -10,16 +10,44 @@ export default function App() {
   const upgrades = [
     {
       id: 0,
-      upgradeName: "Upgrade 1",
+      upgradeName: "Tim",
       upgradeCost: 10,
       increaseCost: 1,
       upgradeNumber: 0,
     },
     {
       id: 1,
-      upgradeName: "Upgrade 2",
+      upgradeName: "Manny",
       upgradeCost: 100,
       increaseCost: 10,
+      upgradeNumber: 0,
+    },
+    {
+      id: 1,
+      upgradeName: "Cordelia",
+      upgradeCost: 1000,
+      increaseCost: 100,
+      upgradeNumber: 0,
+    },
+    {
+      id: 1,
+      upgradeName: "Sam",
+      upgradeCost: 10000,
+      increaseCost: 1000,
+      upgradeNumber: 0,
+    },
+    {
+      id: 1,
+      upgradeName: "Davina",
+      upgradeCost: 100000,
+      increaseCost: 10000,
+      upgradeNumber: 0,
+    },
+    {
+      id: 1,
+      upgradeName: "Joe",
+      upgradeCost: 1000000,
+      increaseCost: 100000,
       upgradeNumber: 0,
     },
   ];
@@ -46,13 +74,7 @@ export default function App() {
   }
 
   //buy an upgrade
-  function buyUpgrade(
-    id,
-    upgradeCost,
-    upgradeName,
-    increaseCost,
-    upgradeNumber
-  ) {
+  function buyUpgrade(id, upgradeCost, upgradeName, increaseCost) {
     // Check if the player has enough cookies to purchase the upgrade
     if (cookieCount >= upgradeCost) {
       // Update cps and cookieCount
@@ -81,46 +103,41 @@ export default function App() {
     }
   }
 
-  //set up button array
-  // const upgradeButtons = upgrades.map((upgrade) => (
-  //   <button key={upgrade}>{upgrade}</button>
-  // ));
-
   //Buttons/html structure
   return (
     <>
-      <h1>Click the cookie!</h1>
       <div className="cookieStats">
+        <h1>Feed the staff!</h1>
         <img
           src={cookieButton}
           alt={"A delicious looking chocolate chip cookie"}
           onClick={() => setCookies((cookieCount) => cookieCount + 1)}
         ></img>
-        {userUpgrades.map((upgrade) => {
-          return (
-            <div key={upgrade.upgradeName + upgrade.id}>
-              <button
-                onClick={() =>
-                  buyUpgrade(
-                    upgrade.id,
-                    upgrade.upgradeCost,
-                    upgrade.upgradeName,
-                    upgrade.increaseCost,
-                    upgrade.upgradeNumber
-                  )
-                }
-              >
-                {upgrade.upgradeName}
-              </button>
-              <p>{upgrade.upgradeCost}</p>
-              <p>{upgrade.upgradeNumber} purchased</p>
-            </div>
-          );
-        })}
-        <p>{cookieCount} cookies</p>
-        {cps} cookies per second
+        <p>{cookieCount} lines of code written</p>
+        {cps} lines of code per second
         {isVisible && <ErrorMessage />}
       </div>
+      {userUpgrades.map((upgrade) => {
+        return (
+          <div className="upgrades" key={upgrade.upgradeName + upgrade.id}>
+            <button
+              onClick={() =>
+                buyUpgrade(
+                  upgrade.id,
+                  upgrade.upgradeCost,
+                  upgrade.upgradeName,
+                  upgrade.increaseCost,
+                  upgrade.upgradeNumber
+                )
+              }
+            >
+              {upgrade.upgradeName}
+            </button>
+            <p>{upgrade.upgradeCost}</p>
+            <p>{upgrade.upgradeNumber} purchased</p>
+          </div>
+        );
+      })}
     </>
   );
 }
