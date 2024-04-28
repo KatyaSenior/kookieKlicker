@@ -10,16 +10,44 @@ export default function App() {
   const upgrades = [
     {
       id: 0,
-      upgradeName: "Upgrade 1",
+      upgradeName: "Tim",
       upgradeCost: 10,
       increaseCost: 1,
       upgradeNumber: 0,
     },
     {
       id: 1,
-      upgradeName: "Upgrade 2",
+      upgradeName: "Manny",
       upgradeCost: 100,
       increaseCost: 10,
+      upgradeNumber: 0,
+    },
+    {
+      id: 1,
+      upgradeName: "Cordelia",
+      upgradeCost: 1000,
+      increaseCost: 100,
+      upgradeNumber: 0,
+    },
+    {
+      id: 1,
+      upgradeName: "Sam",
+      upgradeCost: 10000,
+      increaseCost: 1000,
+      upgradeNumber: 0,
+    },
+    {
+      id: 1,
+      upgradeName: "Davina",
+      upgradeCost: 100000,
+      increaseCost: 10000,
+      upgradeNumber: 0,
+    },
+    {
+      id: 1,
+      upgradeName: "Joe",
+      upgradeCost: 1000000,
+      increaseCost: 100000,
       upgradeNumber: 0,
     },
   ];
@@ -78,15 +106,15 @@ export default function App() {
   //Buttons/html structure
   return (
     <>
-      <h1>Click the cookie!</h1>
       <div className="cookieStats">
+        <h1>Feed the staff!</h1>
         <img
           src={cookieButton}
           alt={"A delicious looking chocolate chip cookie"}
           onClick={() => setCookies((cookieCount) => cookieCount + 1)}
         ></img>
-        <p>{cookieCount} cookies</p>
-        {cps} cookies per second
+        <p>{cookieCount} lines of code written</p>
+        {cps} lines of code per second
         {isVisible && <ErrorMessage />}
       </div>
       {userUpgrades.map((upgrade) => {
